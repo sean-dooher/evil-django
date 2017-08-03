@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', gethostname(), gethostbyname(gethostname())]
 
+import socket
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.connect(("8.8.8.8", 80))
+ALLOWED_HOSTS.append(s.getsockname()[0])
+s.close()
+
 
 # Application definition
 
